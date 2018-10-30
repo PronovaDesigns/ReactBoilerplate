@@ -22,6 +22,12 @@ module.exports = {
   },
   resolve: {
     root: __dirname,
+    // modulesDirectories with the components folder referenced allows us to --
+    // avoid having to update the the aliases whenever we add a new component.
+    modulesDirectories: [
+      'node_modules',
+      './app/components'
+    ],
     alias: {
       applicationStyles: 'app/styles/app.scss'
     },
