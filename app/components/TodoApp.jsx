@@ -1,8 +1,9 @@
 var React = require('react');
 var TodoList = require('TodoList');
+var AddTodo = require('AddTodo');
 
 var TodoApp = React.createClass({
-  
+
   // This will not pass the data in the production version of the app.
   // It is a good practice to build apps with static data first.
   getInitialState: function () {
@@ -25,12 +26,17 @@ var TodoApp = React.createClass({
     };
   },
 
+  handleAddToDo: function (text) {
+    alert('new todo: ' + text);
+  },
+
   render: function () {
     var {todos} = this.state;
 
     return (
       <div>
         <TodoList todos={todos} />
+        <AddTodo onAddToDo={this.handleAddToDo} />
       </div>
     )
   }
