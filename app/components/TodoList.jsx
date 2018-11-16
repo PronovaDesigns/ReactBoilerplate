@@ -9,7 +9,7 @@ var TodoList = React.createClass({
       return todos.map( (todo) => {
         return (
           // {...todo} is called a spread operator - it takes all attributes on todo and passes it down as a prop.
-          <Todo key={todo.id} {...todo} />
+          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle} />
         );
       });
     };
