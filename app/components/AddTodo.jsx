@@ -5,11 +5,11 @@ var AddTodo = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
 
-    var task = this.refs.task.value;
+    var todoItem = this.refs.task.value;
 
-    if (task.length > 0) {
+    if (todoItem.length > 0) {
       this.refs.task.value = "";
-      this.props.onAddToDo(task);
+      this.props.onAddToDo(todoItem);
     } else {
       this.refs.task.focus();
     }
