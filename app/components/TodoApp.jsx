@@ -1,37 +1,23 @@
 var React = require('react');
+var uuid = require('node-uuid');
+
 var TodoList = require('TodoList');
 var AddTodo = require('AddTodo');
 var TodoSearch = require('TodoSearch');
-var uuid = require('node-uuid');
+var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
 
-  // This will not pass the data in the production version of the app.
-  // It is a good practice to build apps with static data first.
   getInitialState: function () {
     return {
-      showComplete: false,
+      showCompleted: false,
       searchText: '',
-      todos: [
-        {
-          id: uuid(),
-          text: "Walk the dog.",
-          completed: false
-        }, {
-          id: uuid(),
-          text: "Take out the trash.",
-          completed: true
-        }, {
-          id: uuid(),
-          text: "Cook the goose.",
-          completed: true
-        }, {
-          id: uuid(),
-          text: "Chop the chicken.",
-          completed: false
-        }
-      ]
+      todos: TodoAPI.getTodos()
     };
+  },
+
+  componentDidUpdate: function () {
+    TodoAPI.setTodos(this.state.todos);
   },
 
   handleAddToDo: function (text) {
@@ -58,7 +44,7 @@ var TodoApp = React.createClass({
       return todo;
     });
 
-    this.setState({toods: updatedTodos});
+    this.setState({todos: updatedTodos});
   },
 
   handleSearch: function (showCompleted, searchText) {
@@ -69,12 +55,13 @@ var TodoApp = React.createClass({
   },
 
   render: function () {
-    var {todos} = this.state;
+    var {todos, showCompleted, searchText} = this.state;
+    var filterTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch} />
-        <TodoList todos={todos} onToggle={this.handleToggle} />
+        <TodoList todos={filterTodos} onToggle={this.handleToggle} />
         <AddTodo onAddToDo={this.handleAddToDo} />
       </div>
     )
