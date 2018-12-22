@@ -1,0 +1,30 @@
+.todo {
+  align-items: center; // We can use this to align all items because we use flex.
+  cursor: pointer;
+  display: flex; // This allows us to align everything in the class div.
+  padding: 1rem;
+  transition: background .3s ease; // This lets you transition a property between it's states.
+
+  p, input { // Using a comma is a cleaner way to apply a set of SCSS properties to multiple classes.
+    margin: 0;
+  }
+
+  > :first-child {
+    margin-right: 1rem;
+  }
+
+    &:hover { // &:hover is a cleaner way to write a psuedo-class
+      background: #f0f0f0;
+    }
+  }
+
+.todo__subtext {
+  color: #999;
+}
+
+.todo-completed {
+  p, todo-subtext {
+    color: $light-color;
+    text-decoration: line-through;
+  }
+}
