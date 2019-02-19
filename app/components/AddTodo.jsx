@@ -1,17 +1,25 @@
 var React = require('react');
+var {connect} = require('react-redux');
+var actions = require('actions');
 
-var AddTodo = React.createClass({
+export var AddTodo = React.createClass({
 
   handleSubmit: function (e) {
     e.preventDefault();
-
+    var { dispatch } = this.props;
     var todoItem = this.refs.task.value;
 
     if (todoItem.length > 0) {
       this.refs.task.value = "";
-      this.props.onAddToDo(todoItem);
+
+      // this.props.onAddToDo(todoItem); // This is no longer passed down as props.
+
+      dispatch(actions.addTodo(todoItem)); // Instead we replace the props function with the equivlent action dispatch.
+
     } else {
+
       this.refs.task.focus();
+
     }
   },
 
@@ -27,4 +35,5 @@ var AddTodo = React.createClass({
   }
 });
 
-module.exports = AddTodo;
+// module.exports = AddTodo;
+export default connect()(AddTodo);
