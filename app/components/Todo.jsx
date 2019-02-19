@@ -5,7 +5,7 @@ var actions = require('actions');
 
 export var Todo = React.createClass({
   render: function () {
-    var {id, text, completed, createdAt, completedAt, dispatch} = this.props;
+    var { id, text, completed, createdAt, completedAt, dispatch } = this.props;
 
     // This variable using the ternary operator allows us to style based on the valur of the completed prop.
     var todoClassName = completed ? 'todo todo-completed' : 'todo';
@@ -32,7 +32,7 @@ export var Todo = React.createClass({
         </div>
         <div>
           <p>{text}</p>
-          <p className="todo__subtext">{renderDate()}</p>
+          <p className="todo__subtext">{ renderDate() }</p>
         </div>
       </div>
     )

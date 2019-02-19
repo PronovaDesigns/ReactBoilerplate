@@ -4,7 +4,7 @@ var moment = require('moment');
 
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
-var TodoSearch = require('TodoSearch');
+import TodoSearch from 'TodoSearch';
 var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
@@ -21,20 +21,20 @@ var TodoApp = React.createClass({
     TodoAPI.setTodos(this.state.todos);
   },
 
-  handleAddToDo: function (text) {
-    this.setState({
-      todos: [
-        ...this.state.todos,
-        {
-          id: uuid(),
-          text: text,
-          completed: false,
-          createdAt: moment().unix(),
-          completedAt: undefined
-        }
-      ]
-    });
-  },
+  // handleAddToDo: function (text) {
+  //   this.setState({
+  //     todos: [
+  //       ...this.state.todos,
+  //       {
+  //         id: uuid(),
+  //         text: text,
+  //         completed: false,
+  //         createdAt: moment().unix(),
+  //         completedAt: undefined
+  //       }
+  //     ]
+  //   });
+  // },
 
   // handleToggle: function (id) {
   //   // ".map" allows us to iterate through all our todos
@@ -51,12 +51,12 @@ var TodoApp = React.createClass({
   //   this.setState({todos: updatedTodos});
   // },
 
-  handleSearch: function (showCompleted, searchText) {
-    this.setState({
-      showCompleted: showCompleted,
-      searchText: searchText
-    })
-  },
+  // handleSearch: function (showCompleted, searchText) {
+  //   this.setState({
+  //     showCompleted: showCompleted,
+  //     searchText: searchText
+  //   })
+  // },
 
   render: function () {
     var {todos, showCompleted, searchText} = this.state;
@@ -69,9 +69,9 @@ var TodoApp = React.createClass({
         <div className="row">
           <div className="column small-centered small-11 medium-5 large-5">
             <div className="container">
-              <TodoSearch onSearch={this.handleSearch} />
-              <TodoList/>
-              <AddTodo onAddToDo={this.handleAddToDo} />
+              <TodoSearch />
+              <TodoList />
+              <AddTodo />
             </div>
           </div>
         </div>
