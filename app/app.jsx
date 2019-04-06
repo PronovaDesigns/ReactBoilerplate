@@ -12,7 +12,6 @@ var store = require('configureStore').configure();
 store.subscribe(() => {
   var state = store.getState();
   console.log('New State', state);
-
   TodoAPI.setTodos(state.todos);
 });
 

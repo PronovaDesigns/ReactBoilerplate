@@ -14,7 +14,7 @@ export var AddTodo = React.createClass({
 
       // this.props.onAddToDo(todoItem); // This is no longer passed down as props.
 
-      dispatch(actions.addTodo(todoItem)); // Instead we replace the props function with the equivlent action dispatch.
+      dispatch(actions.startAddTodo(todoItem)); // Instead we replace the props function with the equivlent action dispatch.
 
     } else {
 
