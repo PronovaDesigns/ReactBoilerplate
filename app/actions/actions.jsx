@@ -49,9 +49,25 @@ export var addTodos = (todos) => {
   };
 };
 
-export var toggleTodo = (id) => {
+export var updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'UPDATE_TODO',
+    id,
+    updates
+  };
+};
+
+export var startToggleTodo = (id, completed) => {
+  return (dispatch, getState) => {
+    // var todoRef = firebaseRef.child('todos/' + id); // Legacy Approach
+    var todoRef = firebaseRef.child(`todos/${id}`); // ES6 Approach
+    var updates = {
+      completed,
+      completedAt: completed ? moment().unix() : null // null is the correct code for deleting data from firebase
+    };
+
+    return todoRef.update(updates).then(() => {
+      dispatch(updateTodo(id, updates));
+    });
   };
 };

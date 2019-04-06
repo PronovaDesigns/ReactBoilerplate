@@ -11,6 +11,7 @@ export var configure = (initialState = {}) => {
   });
 
   var store = redux.createStore(reducer, initialState, redux.compose(
+    // thunk allows for development and use of Asynchronous actions that are needed for external API calls.
     redux.applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
