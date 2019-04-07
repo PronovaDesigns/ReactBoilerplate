@@ -9,14 +9,19 @@ var TodoAPI = require('TodoAPI');
 var actions = require('actions');
 var store = require('configureStore').configure();
 
-store.subscribe(() => {
-  var state = store.getState();
-  console.log('New State', state);
-  TodoAPI.setTodos(state.todos);
-});
+// Redux store subscription to monitor when our React app's redux state store gets updated. (NOT USED WITH FIREBASE)
+// store.subscribe(() => {
+//   var state = store.getState();
+//   console.log('New State', state);
+//   TodoAPI.setTodos(state.todos);
+// });
 
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+// Use local storage internal API to get our saved initial todos to dispatch into the redux store. (NOT USED WITH FIREBASE)
+// var initialTodos = TodoAPI.getTodos();
+// store.dispatch(actions.addTodos(initialTodos));
+
+// Asynchronous action that fetches data from firebase and calls addTodos to update redux store and re-render app.
+store.dispatch(actions.startAddTodos());
 
 // Load foundation
 $(document).foundation();

@@ -46,7 +46,7 @@ module.exports = {
     filteredTodos = filteredTodos.filter( (todo) => {
 
       var text = todo.text.toLowerCase();
-      
+
       // indexOf() returns -1 in the case where an element doesn't contain it's argument.
       return searchText.Length === 0 || todo.text.indexOf(searchText) > -1;
 
