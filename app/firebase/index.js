@@ -5,12 +5,10 @@ try {
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCmzyPkMhXV-dl8IFCqD1hGVKHRtptPVgg",
-    authDomain: "migliorini-todo-app.firebaseapp.com",
-    databaseURL: "https://migliorini-todo-app.firebaseio.com",
-    projectId: "migliorini-todo-app",
-    storageBucket: "migliorini-todo-app.appspot.com",
-    messagingSenderId: "529815903084"
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
   };
 
   firebase.initializeApp(config);
