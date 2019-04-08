@@ -12,6 +12,8 @@ import router from 'app/router/';
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(actions.login(user.uid));
+    // Asynchronous action that fetches data from firebase and calls addTodos to update redux store and re-render app.
+    store.dispatch(actions.startAddTodos());
     hashHistory.push('/todos');
   } else {
     store.dispatch(actions.logout());
@@ -29,9 +31,6 @@ firebase.auth().onAuthStateChanged((user) => {
 // Use local storage internal API to get our saved initial todos to dispatch into the redux store. (NOT USED WITH FIREBASE)
 // var initialTodos = TodoAPI.getTodos();
 // store.dispatch(actions.addTodos(initialTodos));
-
-// Asynchronous action that fetches data from firebase and calls addTodos to update redux store and re-render app.
-store.dispatch(actions.startAddTodos());
 
 // Load foundation
 $(document).foundation();
