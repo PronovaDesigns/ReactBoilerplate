@@ -19,6 +19,6 @@ try {
 
 // Interactions with firebase are handled within the actions.jsx file.
 // Existing actions are made to function within a new Asynchronous action
-
+export var githubProvider = new firebase.auth.GithubAuthProvider();
 export var firebaseRef = firebase.database().ref();
 export default firebase;
