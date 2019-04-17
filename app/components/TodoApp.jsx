@@ -6,65 +6,21 @@ import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 import * as actions from 'actions';
 
-export var TodoApp = React.createClass({
+export class TodoApp extends React.Component {
 
-  // getInitialState: function () {
-  //   return {
-  //     showCompleted: false,
-  //     searchText: '',
-  //     todos: TodoAPI.getTodos()
-  //   };
-  // },
+  constructor (props) {
+    super(props);
+    this.onLogout = this.onLogout.bind(this);
+  }
 
-  // componentDidUpdate: function () {
-  //   TodoAPI.setTodos(this.state.todos);
-  // },
-
-  // handleAddToDo: function (text) {
-  //   this.setState({
-  //     todos: [
-  //       ...this.state.todos,
-  //       {
-  //         id: uuid(),
-  //         text: text,
-  //         completed: false,
-  //         createdAt: moment().unix(),
-  //         completedAt: undefined
-  //       }
-  //     ]
-  //   });
-  // },
-
-  // handleToggle: function (id) {
-  //   // ".map" allows us to iterate through all our todos
-  //   var updatedTodos = this.state.todos.map( (todo) => {
-  //
-  //     if (todo.id === id) {
-  //       todo.completed = !todo.completed;
-  //       todo.completedAt = todo.completed ? moment().unix() : undefined;
-  //     }
-  //
-  //     return todo;
-  //   });
-  //
-  //   this.setState({todos: updatedTodos});
-  // },
-
-  // handleSearch: function (showCompleted, searchText) {
-  //   this.setState({
-  //     showCompleted: showCompleted,
-  //     searchText: searchText
-  //   })
-  // },
-
-  onLogout(e) {
-    var {dispatch} = this.props;
+  onLogout (e) {
+    var { dispatch } = this.props;
     e.preventDefault();
 
     dispatch(actions.startLogout());
-  },
+  }
 
-  render() {
+  render () {
     return (
       <div>
         <div className="page-actions">
@@ -85,6 +41,6 @@ export var TodoApp = React.createClass({
       </div>
     )
   }
-});
+};
 
 export default Redux.connect()(TodoApp);

@@ -3,23 +3,23 @@ var {connect} = require('react-redux');
 import Todo from 'Todo';
 var TodoAPI = require('TodoAPI');
 
-export var TodoList = React.createClass({
-  render: function () {
+export class TodoList extends React.Component {
+
+  render () {
     var { todos, showCompleted, searchText } = this.props;
 
     var renderTodos = () => {
 
       var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
-      if(filteredTodos.length === 0) {
+      if (filteredTodos.length === 0) {
         return (
           <p className="container__message">Nothing To Do</p>
         );
       }
-      
+
       return filteredTodos.map((todo) => {
         return (
-          // {...todo} is called a spread operator - it takes all attributes on todo and passes it down as a prop.
           <Todo key={todo.id} {...todo} />
         );
       });
@@ -31,7 +31,7 @@ export var TodoList = React.createClass({
       </div>
     )
   }
-});
+};
 
 // Connects the component to global redux store and requests the needed data -- that data is set as a prop for this component.
 export default connect(

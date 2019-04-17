@@ -3,8 +3,8 @@ var {connect} = require('react-redux');
 var moment = require('moment');
 var actions = require('actions');
 
-export var Todo = React.createClass({
-  render: function () {
+export class Todo extends React.Component {
+  render () {
     var { id, text, completed, createdAt, completedAt, dispatch } = this.props;
 
     // This variable using the ternary operator allows us to style based on the valur of the completed prop.
@@ -25,7 +25,7 @@ export var Todo = React.createClass({
     return (
       <div className={todoClassName} onClick={ () => {
         // this.props.onToggle(id);
-        dispatch(actions.startToggleTodo(id, !completed)); // Replace passed in props function with dispatch action.
+        dispatch(actions.startToggleTodo(id, !completed)); // Replace passed-in props function with dispatch action.
       }}>
         <div>
           <input type="checkbox" checked={completed} />
@@ -37,6 +37,6 @@ export var Todo = React.createClass({
       </div>
     )
   }
-});
+};
 
 export default connect()(Todo);
